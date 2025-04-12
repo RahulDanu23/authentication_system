@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 Factor Authentication</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div class="form-box active" id="login-form">
+            <form action="dashboard.html" method="get">
+                <h2>Login</h2>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <div class="password-container">
+                    <input type="password" id="login-password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" name="Login">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
+                <p><a href="#" onclick="showForm('forgot-password-form')">Forgot Password?</a></p>
+            </form>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-box" id="register-form">
+            <form>
+                <h2>Register</h2>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <div class="date_of_birth">
+                    <input type="date" name="dob" placeholder="Date of Birth" required>
+                </div>
+                <div class="password-container">
+                    <input type="password" id="register-password" name="password" placeholder="Password" required>  
+                </div>
+                <div class="password-container">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" name="Register">Register</button>
+                <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="form-box" id="forgot-password-form">
+            <form>
+                <h2>Forgot Password</h2>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <br>
+                <button type="submit" name="Reset">Reset Password</button>
+                <p>Remembered your password? <a href="#" onclick="showForm('login-form')">Login</a></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        function showForm(formId) {
+            document.querySelectorAll('.form-box').forEach(form => form.classList.remove('active'));
+            document.getElementById(formId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

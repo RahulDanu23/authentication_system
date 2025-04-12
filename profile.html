@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Dashboard</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="logout">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="profile-section">
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+                            <button class="edit-profile-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-info">
+                            <h1>John Doe</h1>
+                            <p class="role">Administrator</p>
+                            <p class="email">john.doe@example.com</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="detail-card">
+                            <h3>Personal Information</h3>
+                            <div class="detail-item">
+                                <span class="label">Full Name</span>
+                                <span class="value">John Doe</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Phone</span>
+                                <span class="value">+1 234 567 890</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Location</span>
+                                <span class="value">New York, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Join Date</span>
+                                <span class="value">January 1, 2023</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h3>Account Settings</h3>
+                            <div class="detail-item">
+                                <span class="label">Account Status</span>
+                                <span class="value active">Active</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Two-Factor Auth</span>
+                                <span class="value">Disabled</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Last Login</span>
+                                <span class="value">Today, 10:30 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <a href="edit-profile.html" class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i>
+                            Edit Profile
+                        </a>
+                            <a href="change-password.html" class="action-btn edit-btn">   
+                                <i class="fas fa-edit"></i>
+                                Change Password
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
