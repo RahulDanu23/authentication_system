@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FA Verification</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .verification-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6f85e5 0%, #8758b7 100%);
+        }
+
+        .verification-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .verification-box h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .verification-box p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .otp-inputs input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .verification-box button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .verification-box button:hover {
+            background: #764ba2;
+        }
+
+        .resend-link {
+            margin-top: 1rem;
+            display: block;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .resend-link:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+        .alert-success {
+            background: #2ecc71;
+        }
+        .alert-error {
+            background: #e74c3c;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="verification-box">
+            <h2>Two-Factor Authentication</h2>
+            <p>Please enter the 6-digit code sent to your email</p>
+            <form id="verify-form">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" maxlength="1" pattern="[0-9]" required>
+                </div>
+                <button type="submit">Verify</button>
+                <a href="#" class="resend-link">Resend Code</a>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Get all OTP input fields
+        const otpInputs = document.querySelectorAll('.otp-inputs input');
+        const verifyForm = document.getElementById('verify-form');
+        const resendLink = document.querySelector('.resend-link');
+
+        // Function to show alert message
+        function showAlert(message, type = 'success') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+
+            document.body.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Handle input focus and auto-tab
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Handle form submission
+        verifyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get the complete OTP
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            // In a real application, you would verify the OTP with your backend
+            // For this demo, we'll just check if all digits are filled
+            if (otp.length === 6) {
+                showAlert('Verification successful! Redirecting to dashboard...');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } else {
+                showAlert('Please enter a complete 6-digit code', 'error');
+            }
+        });
+
+        // Handle resend code
+        resendLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAlert('New verification code sent to your email');
+        });
+    </script>
+</body>
+</html> 
